@@ -156,4 +156,48 @@ We use:
 ## 6. Our Contribution
 
 | **Previous Studies** | **Our Study (This Project)** |
-|---------------
+|----------------------|------------------------------|
+| LDA evaluated on static corpora (Blei 2003, Rajan 2024) | LDA applied with monthly temporal slicing on 10-year news corpus |
+| Event tracking surveys identify keyword-only limitations (Han 2024) | Article velocity + novelty score features address this limitation empirically |
+| BERTopic achieves high coherence but no temporal structure (Grootendorst 2022) | Phase 3 hybrid: BERTopic embeddings + LDA temporal assignments |
+| Explainable temporal modeling requires external trend data (Le 2026) | All temporal signals derived from corpus — no external data needed |
+| No ablation study on HuffPost with temporal + static comparison (Rajan 2024) | Structured ablation: TF-IDF baseline vs LDA vs Hybrid with coherence + perplexity |
+| DTM models temporal evolution but is computationally expensive (Blei 2006) | Monthly slicing approximates DTM at lower computational cost in Phase 1 |
+
+---
+
+## 7. Conclusion
+
+This literature review establishes the theoretical and empirical foundation for
+dynamic trend and event detection in news media. By combining the probabilistic
+topic modeling framework of **Blei et al. (2003)**, the temporal evolution
+motivation of **Blei and Lafferty (2006)**, the embedding-based improvements
+of **Grootendorst (2022)**, the event tracking context of **Han et al. (2024)**,
+the recent explainable temporal modeling of **Le et al. (2026)**, and the direct
+dataset benchmarks of **Rajan et al. (2024)**, this study aims to:
+
+- Detect and track evolving topics month-by-month across 10 years of HuffPost news
+- Identify event-driven spikes using article velocity and headline novelty features
+- Compare probabilistic baseline (LDA) against deep learning (BERTopic) in a
+  structured ablation study
+- Provide a reproducible temporal topic modeling pipeline on English multi-category
+  news data
+
+This approach ensures both **academic grounding** in established topic modeling
+literature and **practical contribution** by filling the temporal analysis gap
+identified across all surveyed works.
+
+---
+
+## References
+
+1. Blei, D.M., Ng, A.Y., Jordan, M.I. (2003). Latent Dirichlet Allocation. *JMLR*, 3, 993–1022.
+2. Blei, D.M., Lafferty, J.D. (2006). Dynamic Topic Models. *ICML 2006*.
+3. Wang, X., McCallum, A. (2006). Topics over Time. *ACM SIGKDD*.
+4. Devlin, J. et al. (2019). BERT. *NAACL 2019*.
+5. Grootendorst, M. (2022). BERTopic. *arXiv:2203.05794*.
+6. Balagopalan, A. et al. (2024). BERTrend. *ACL FutureD Workshop*.
+7. Han, Z. et al. (2024). A Survey on Event Tracking in Social Media Data Streams. *Big Data Mining and Analytics*, 7(1), 217–243.
+8. Rajan, A. et al. (2024). Comparative Study of Topic Modelling on News Articles. *Springer DaSET*.
+9. Le, H.H., Harakawa, R., Iwahashi, M. (2026). Explainable Topic Modeling for Tracking User Interests. *IEEE Access*, 14, 36548–36563.
+10. Yao, Z. et al. (2018). Dynamic Word Embeddings. *WSDM 2018*.
