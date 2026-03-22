@@ -2,33 +2,6 @@
 
 **Automated Detection and Tracking of Evolving Topics in News Media Using Probabilistic Topic Modeling, Temporal Feature Engineering, and Embedding-Based Clustering**
 
----
-
-## Table of Contents
-
-- [Problem Statement](#problem-statement)
-- [Approach & Methodology](#approach--methodology)
-- [Dataset](#dataset)
-- [Project Structure](#project-structure)
-- [Setup & Installation](#setup--installation)
-- [Pipeline Overview](#pipeline-overview)
-  - [Phase 1: Data Preprocessing & EDA](#phase-1-data-preprocessing--eda)
-  - [Phase 2: Feature Engineering](#phase-2-feature-engineering)
-  - [Phase 3: Model Application](#phase-3-model-application)
-- [Models](#models)
-  - [Model A — TF-IDF Baseline](#model-a--tf-idf-baseline)
-  - [Model B — LDA (Advanced ML)](#model-b--lda-advanced-ml)
-  - [Model C — BERTopic (Deep Learning)](#model-c--bertopic-deep-learning)
-- [Results & Evaluation](#results--evaluation)
-- [Key Findings](#key-findings)
-- [Literature Review](#literature-review)
-- [Research Papers](#research-papers)
-- [Contributors](#contributors)
-- [References](#references)
-- [License](#license)
-
----
-
 ## Problem Statement
 
 The exponential growth of digital news platforms generates an unprecedented volume of textual data daily. Organizations in journalism, policy-making, and social media analytics require automated systems that can:
@@ -43,8 +16,6 @@ Existing methods fail on one or more of these requirements:
 - **Pure embedding methods** (e.g., BERTopic alone) achieve high coherence but cannot separate event-driven changes from seasonal noise.
 
 This project addresses these gaps by building a **multi-model temporal topic modeling pipeline** that combines probabilistic topic modeling with domain-specific trend features — all derived directly from the corpus without requiring external data sources.
-
----
 
 ## Approach & Methodology
 
@@ -75,8 +46,6 @@ The LDA model operates on the following generative process:
 
 Inference is performed via the **EM algorithm (variational Bayes)**. We acknowledge the **i.i.d. assumption violation** inherent in LDA when applied to temporally structured data and mitigate it via monthly slicing — an approximation of Dynamic Topic Models (Blei & Lafferty, 2006) at lower computational cost.
 
----
-
 ## Dataset
 
 **HuffPost News Category Dataset v3** (Misra, 2022)
@@ -99,8 +68,6 @@ Inference is performed via the **EM algorithm (variational Bayes)**. We acknowle
   - Headline length: ~9.6 words (approximately normal distribution).
   - Description length: ~19.7 words (right-skewed, skewness = 1.47).
   - *Hapax legomena* (words appearing only once): 45.7% — indicating rich, diverse vocabulary.
-
----
 
 ## Project Structure
 
@@ -127,14 +94,12 @@ Dynamic-Trend-Event-Detector/
     └── Explainable_Topic_Modeling_for_Tracking_User_Interests_Related_to_Social_Events.pdf
 ```
 
----
-
 ## Setup & Installation
 
 ### Prerequisites
 
 - Python 3.8+
-- [Google Colab](https://colab.research.google.com/) (recommended for GPU-accelerated BERTopic)
+- [Google Colab](https://colab.research.google.com/)
 
 ### Dependencies
 
@@ -179,8 +144,6 @@ pip install bertopic
    - Model B: LDA with hyperparameter tuning
    - Model C: BERTopic (optional, requires GPU)
 
----
-
 ## Pipeline Overview
 
 ### Phase 1: Data Preprocessing & EDA
@@ -212,8 +175,6 @@ Engineered features designed to capture trend signals:
 
 Three-model structured ablation study with increasing complexity.
 
----
-
 ## Models
 
 ### Model A — TF-IDF Baseline
@@ -241,8 +202,6 @@ Three-model structured ablation study with increasing complexity.
 - **Evaluation:** Coherence comparison against LDA baseline.
 - **Advantage:** Higher coherence scores on news corpora (Grootendorst, 2022).
 
----
-
 ## Results & Evaluation
 
 ### Evaluation Metrics
@@ -262,8 +221,6 @@ Three-model structured ablation study with increasing complexity.
 
 The ablation shows progressive improvement from simple frequency methods to probabilistic models to deep learning approaches, justifying the added complexity at each stage.
 
----
-
 ## Key Findings
 
 1. **Topic Non-Stationarity:** Topic distributions shift dramatically around major world events, validating temporal slicing as a necessary modeling choice.
@@ -271,8 +228,6 @@ The ablation shows progressive improvement from simple frequency methods to prob
 3. **Headline Novelty:** Rare words appearing in short time windows (e.g., "omicron" in late 2021, "impeachment" in 2019) provide strong breaking-news signals.
 4. **LDA vs BERTopic:** BERTopic achieves higher coherence than LDA but lacks probabilistic interpretability — the hybrid approach combines strengths of both.
 5. **Self-Contained Temporal Signals:** All temporal features derived from the corpus itself, without requiring external data sources.
-
----
 
 ## Literature Review
 
@@ -284,8 +239,6 @@ A comprehensive literature review is available in [`docs/literature-review.md`](
 4. **Direct Dataset Benchmarks:** Rajan et al. (2024) benchmarking LDA, BERTopic, NMF, and Top2Vec on this exact HuffPost dataset — but only statically, without temporal analysis.
 5. **Research Gaps:** Explicit identification of 6 limitations in prior work and how this project addresses each.
 
----
-
 ## Research Papers
 
 The following research papers (included in `research-papers/`) informed this project:
@@ -293,16 +246,12 @@ The following research papers (included in `research-papers/`) informed this pro
 1. **Han et al. (2024)** — *A Survey on Event Tracking in Social Media Data Streams.* Big Data Mining and Analytics, 7(1), 217–243.
 2. **Le et al. (2026)** — *Explainable Topic Modeling for Tracking User Interests Related to Social Events.* IEEE Access, 14, 36548–36563.
 
----
-
 ## Contributors
 
 | Contributor | Role | Key Contributions |
 |------------|------|-------------------|
 | **Meenaksh** | Data & Feature Engineering | Dataset curation, data preprocessing, feature engineering pipeline |
 | **Abhishek** | Modeling & Analysis | EDA, model implementation (TF-IDF, LDA, BERTopic), literature review, research paper curation |
-
----
 
 ## References
 
@@ -317,8 +266,6 @@ The following research papers (included in `research-papers/`) informed this pro
 9. Le, H.H., Harakawa, R., Iwahashi, M. (2026). *Explainable Topic Modeling for Tracking User Interests.* IEEE Access, 14, 36548–36563.
 10. Yao, Z. et al. (2018). *Dynamic Word Embeddings.* WSDM 2018.
 11. Misra, R. (2022). *News Category Dataset.* [doi:10.48550/arXiv.2209.11429](https://doi.org/10.48550/arXiv.2209.11429).
-
----
 
 ## License
 

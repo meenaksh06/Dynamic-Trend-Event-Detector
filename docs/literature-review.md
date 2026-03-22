@@ -24,8 +24,6 @@ This project builds on those insights by using the **HuffPost News Category Data
 detect and track evolving topics over time using a pipeline of probabilistic topic
 modeling, temporal feature engineering, and embedding-based clustering.
 
----
-
 ## 2. Probabilistic Topic Models and Baseline Methods
 
 **Blei et al. (2003)** introduced LDA as a generative probabilistic model where
@@ -53,8 +51,6 @@ We use:
 - Monthly temporal slicing to approximate DTM's time-based topic evolution
 - Coherence (c_v) and perplexity as evaluation metrics — standard for unsupervised
   topic models where classification metrics like F1 do not apply
-
----
 
 ## 3. Neural and Embedding-Based Approaches
 
@@ -92,8 +88,6 @@ We use:
   the corpus, requiring no external data source (unlike Le et al. who use Google Trends)
 - Phase 3 hybrid architecture: LDA probabilistic assignments + BERTopic semantic
   embeddings + temporal evolution logic
-
----
 
 ## 4. Applied Event Tracking and News Analytics
 
@@ -138,8 +132,6 @@ We use:
   corpus appearing in a short time window signal semantic novelty (e.g.,
   "omicron" in late 2021, "impeachment" in 2019)
 
----
-
 ## 5. Research Gaps Identified in Prior Work
 
 | **Limitation in Prior Work** | **How Our Project Addresses It** |
@@ -151,8 +143,6 @@ We use:
 | BERTopic (Grootendorst 2022) cannot separate event vs seasonal topic shifts | Our LDA temporal slicing + velocity features explicitly model event-driven spikes |
 | Blei 2003 LDA assumes static topics — i.i.d. documents | We acknowledge this assumption violation and mitigate via monthly slicing |
 
----
-
 ## 6. Our Contribution
 
 | **Previous Studies** | **Our Study (This Project)** |
@@ -163,8 +153,6 @@ We use:
 | Explainable temporal modeling requires external trend data (Le 2026) | All temporal signals derived from corpus — no external data needed |
 | No ablation study on HuffPost with temporal + static comparison (Rajan 2024) | Structured ablation: TF-IDF baseline vs LDA vs Hybrid with coherence + perplexity |
 | DTM models temporal evolution but is computationally expensive (Blei 2006) | Monthly slicing approximates DTM at lower computational cost in Phase 1 |
-
----
 
 ## 7. Conclusion
 
@@ -186,8 +174,6 @@ dataset benchmarks of **Rajan et al. (2024)**, this study aims to:
 This approach ensures both **academic grounding** in established topic modeling
 literature and **practical contribution** by filling the temporal analysis gap
 identified across all surveyed works.
-
----
 
 ## References
 

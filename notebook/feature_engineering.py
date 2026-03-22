@@ -4,7 +4,6 @@ import os
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
-# Download necessary NLTK data for VADER
 try:
     nltk.data.find('sentiment/vader_lexicon.zip')
 except LookupError:
