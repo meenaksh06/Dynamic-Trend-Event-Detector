@@ -1,4 +1,3 @@
-cat > report/literature_review_formatted.md << 'EOF'
 # Literature Review Summary
 
 ## 1. Introduction
