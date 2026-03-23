@@ -251,7 +251,7 @@ The following research papers (included in `research-papers/`) informed this pro
 | Contributor | Role | Key Contributions |
 |------------|------|-------------------|
 | **Meenaksh** | Data & Feature Engineering | Dataset curation, data preprocessing, feature engineering pipeline |
-| **Abhishek** | Modeling & Analysis | EDA, model implementation (TF-IDF, LDA, BERTopic), literature review, research paper curation |
+| **Abhishek** | Modeling & Analysis | EDA, model implementation (TF-IDF, LDA, future scope (BERTopic)), literature review, research paper curation |
 
 ## References
 
