@@ -13,7 +13,7 @@ tqdm.pandas()
 
 input_file = '/Users/meenakshsinghania04/Desktop/Dynamic-Trend-Event-Detector/data/processed/processed_news.csv'
 output_dir = '/Users/meenakshsinghania04/Desktop/Dynamic-Trend-Event-Detector/data/processed'
-output_file = os.path.join(output_dir, 'featured_news.csv')
+output_file = os.path.join(output_dir, 'featured_news.parquet')
 
 def main():
     print(f"Loading data from {input_file}...")
@@ -27,8 +27,9 @@ def main():
     df['day_of_week'] = df['date'].dt.dayofweek
 
     print("Extracting text length features...")
-    df['word_count'] = df['clean_text'].apply(lambda x: len(str(x).split()))
-    df['char_count'] = df['clean_text'].apply(lambda x: len(str(x)))
+    # Vectorized operations for significant efficiency boost
+    df['word_count'] = df['clean_text'].str.split().str.len().astype(int)
+    df['char_count'] = df['clean_text'].str.len().astype(int)
 
     print("Extracting sentiment features using VADER...")
     sia = SentimentIntensityAnalyzer()
@@ -45,7 +46,7 @@ def main():
         df[f'sentiment_{col}'] = scores_df[col]
 
     print(f"Saving featured data to {output_file}...")
-    df.to_csv(output_file, index=False)
+    df.to_parquet(output_file, index=False, engine='pyarrow')
     print("Feature engineering completed successfully!")
     print("\nSample of engineered features:")
     print(df[['year', 'word_count', 'sentiment_compound']].head())
