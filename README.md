@@ -79,7 +79,9 @@ Dynamic-Trend-Event-Detector/
 ├── data/
 │   ├── raw/
 │   │   └── News_Category_Dataset_v3.json    # Raw dataset (209,527 articles)
-│   └── featured_data.csv                     # Processed data with engineered features
+│   └── processed/
+│       ├── processed_news.csv               # Intermediate processed data
+│       └── featured_news.parquet            # Efficient optimized processed data
 │
 ├── notebook/
 │   ├── EDA.ipynb                      # Exploratory Data Analysis
