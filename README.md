@@ -1,13 +1,13 @@
-# Dynamic Trend & Event Detector 🚀
+# Dynamic Trend & Event Detector 
 
 **An Advanced Pipeline for Semantic Topic Discovery, Temporal Trend Forecasting, and Deep Learning Model Interpretability.**
 
 ---
 
-## 📈 Project Overview
+## Project Overview
 The **Dynamic Trend & Event Detector** is a state-of-the-art system designed to identify, track, and forecast evolving news narratives. By combining probabilistic generative models (LDA) with contextual deep learning architectures (BERTopic & BiLSTM), the system provides high-fidelity insights into media trends and breaking events.
 
-### 🌟 Key Advanced Features
+### Key Advanced Features
 - **Semantic Evolution Tracking**: Using Transformer-based embeddings to capture nuanced shifts in news vocabulary.
 - **Multivariate Forecasting**: A Bidirectional LSTM (BiLSTM) architecture tuned to predict topic proportions across monthly temporal slices.
 - **Explainable AI (XAI)**: A dedicated interpretability suite using **SHAP**, **Temporal Attention Maps**, and **Gradient Saliency** to validate model decisions.
@@ -15,7 +15,7 @@ The **Dynamic Trend & Event Detector** is a state-of-the-art system designed to 
 
 ---
 
-## 🛠 Model Pipeline
+## Model Pipeline
 
 The project follows a structured evolution of complexity, from statistical baselines to interpretable deep learning:
 
@@ -28,7 +28,7 @@ The project follows a structured evolution of complexity, from statistical basel
 
 ---
 
-## 🔍 Model Interpretability & XAI
+## Model Interpretability & XAI
 Ensuring reliability in event detection requires transparency. Our interpretability suite validates that models learn semantically valid features:
 
 - **[SHAP (Shapley Additive Explanations)](notebook-Phase-2/Model_Interpretability.ipynb)**: Quantifies the global and local impact of historical topic counts on future forecasts.
@@ -37,7 +37,7 @@ Ensuring reliability in event detection requires transparency. Our interpretabil
 
 ---
 
-## 📐 Theoretical Foundations
+## Theoretical Foundations
 We connect our technical implementation to academic first-principles. Detailed derivations are available in the **[Mathematical Foundations](docs/mathematical_foundations.md)** document.
 
 ### Highlights:
@@ -47,7 +47,7 @@ We connect our technical implementation to academic first-principles. Detailed d
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 ```text
 Dynamic-Trend-Event-Detector/
 ├── data/
@@ -65,7 +65,7 @@ Dynamic-Trend-Event-Detector/
 
 ---
 
-## 🚀 Setup & Installation
+## Setup & Installation
 
 1. **Clone & Environment**:
    ```bash
