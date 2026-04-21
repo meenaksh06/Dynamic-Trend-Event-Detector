@@ -1,91 +1,64 @@
-# Dynamic Trend & Event Detector 
+# 🚀 Dynamic Trend & Event Detector
 
 **An Advanced Pipeline for Semantic Topic Discovery, Temporal Trend Forecasting, and Deep Learning Model Interpretability.**
 
----
-
-## Project Overview
-The **Dynamic Trend & Event Detector** is a state-of-the-art system designed to identify, track, and forecast evolving news narratives. By combining probabilistic generative models (LDA) with contextual deep learning architectures (BERTopic & BiLSTM), the system provides high-fidelity insights into media trends and breaking events.
-
-### Key Advanced Features
-- **Semantic Evolution Tracking**: Using Transformer-based embeddings to capture nuanced shifts in news vocabulary.
-- **Multivariate Forecasting**: A Bidirectional LSTM (BiLSTM) architecture tuned to predict topic proportions across monthly temporal slices.
-- **Explainable AI (XAI)**: A dedicated interpretability suite using **SHAP**, **Temporal Attention Maps**, and **Gradient Saliency** to validate model decisions.
-- **Mathematical Rigor**: Model designs derived from first-principles **Linear Algebra** and **Multivariate Calculus**, with documented analysis of **Loss Landscape Geometry**.
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Deep Learning](https://img.shields.io/badge/Framework-TensorFlow%20/%20PyTorch-orange.svg)](https://tensorflow.org)
+[![XAI](https://img.shields.io/badge/Insights-SHAP%20/%20Attention-green.svg)](https://github.com/slundberg/shap)
 
 ---
 
-## Model Pipeline
+## 📖 Overview
+The **Dynamic Trend & Event Detector** is a high-fidelity system designed to identify, track, and forecast evolving news narratives. By fusing probabilistic generative models with contextual transformers and sequence architectures, it provides deep insights into the "pulse" of global media.
 
-The project follows a structured evolution of complexity, from statistical baselines to interpretable deep learning:
-
-| Phase | Model | Core Technique | Purpose |
-|-------|-------|----------------|---------|
-| **A** | TF-IDF | Frequency extraction | Statistical Baseline |
-| **B** | LDA | Variational Bayes (EM) | Latent Distribution Discovery |
-| **C** | BERTopic | Sentence-BERT + UMAP | Deep Semantic Clustering |
-| **D** | Forecast | BiLSTM + Attention | Temporal Pattern Prediction |
-
----
-
-## Model Interpretability & XAI
-Ensuring reliability in event detection requires transparency. Our interpretability suite validates that models learn semantically valid features:
-
-- **[SHAP (Shapley Additive Explanations)](notebook-Phase-2/Model_Interpretability.ipynb)**: Quantifies the global and local impact of historical topic counts on future forecasts.
-- **[Temporal Attention Maps](notebook-Phase-2/Model_Interpretability.ipynb)**: Visualizes the internal "memory" of the sequence model, highlighting which lookback months drive the current prediction.
-- **[Gradient Saliency](notebook-Phase-2/Model_Interpretability.ipynb)**: Uses partial derivatives to identify the specific words in headlines that trigger cluster assignments.
-
----
-
-## Theoretical Foundations
-We connect our technical implementation to academic first-principles. Detailed derivations are available in the **[Mathematical Foundations](docs/mathematical_foundations.md)** document.
-
-### Highlights:
-- **Optimization Geometry**: Analysis of the **Loss Landscape $(\mathcal{J}(\theta))$** and the role of the **Hessian Matrix** in finding flat vs. sharp minima for better generalization.
-- **Forget Gate Calculus**: A mathematical proof of how LSTMs solve the vanishing gradient problem via identity bypasses.
-- **Linear Algebra of Attention**: Deriving Query-Key-Value projections as dynamic transformations in high-dimensional vector spaces.
-
----
-
-## Project Structure
-```text
-Dynamic-Trend-Event-Detector/
-├── data/
-│   └── processed/             # Featured news and topic embeddings
-├── docs/
-│   ├── literature-review.md   # SOTA analysis
-│   └── mathematical_foundations.md # Derivations of LA & Calculus
-├── models/                    # Saved weights (.h5, .safetensors)
-├── notebook-Phase-2/
-│   ├── Forecasting_LSTM.ipynb # Trend prediction pipeline
-│   ├── Model_BERTopic.ipynb   # Semantic discovery
-│   └── Model_Interpretability.ipynb # XAI (SHAP, Attention, Saliency)
-└── app/                       # (Experimental) Visualization Dashboard
+### 🛠 The Pipeline
+```mermaid
+graph LR
+    A[Raw News Corpus] --> B[S-BERT Embeddings]
+    B --> C[UMAP / HDBSCAN]
+    C --> D[BERTopic Clusters]
+    D --> E[BiLSTM Forecasting]
+    E --> F[SHAP & Attention XAI]
+    F --> G[Strategic Insights]
 ```
 
 ---
 
-## Setup & Installation
+## 🌟 Core Technical Pillars
 
-1. **Clone & Environment**:
-   ```bash
-   git clone https://github.com/meenaksh06/Dynamic-Trend-Event-Detector.git
-   pip install -r requirements.txt
-   ```
+### 1. Semantic Evolution Tracking
+Utilizes **BERTopic** (Sentence-BERT + UMAP + HDBSCAN) to capture nuanced shifts in news vocabulary and narrative clusters with state-of-the-art precision.
 
-2. **Run Interpretability Analysis**:
-   Generate the latest validation suite:
-   ```bash
-   python create_interpretability_nb.py
-   ```
+### 2. Multivariate Temporal Forecasting
+A **Bidirectional LSTM (BiLSTM)** architecture designed for high-dimensional time-series forecasting, predicting topic proportions across complex temporal slices.
 
-3. **Explore Foundations**:
-   Review our theoretical discussion in `docs/mathematical_foundations.md`.
+### 3. Explainable AI (XAI)
+Transparency-first design using **SHAP**, **Temporal Attention Maps**, and **Gradient Saliency** to validate model decisions and reveal the semantic triggers behind trend shifts.
+
+---
+
+## 🎓 Mathematical Rigor
+This project is built on first-principles engineering. Comprehensive mathematical derivations are documented in our **[Foundations Guide](docs/mathematical_foundations.md)**.
+
+> [!NOTE]
+> **Key Highlights:**
+> - **Manifold Learning**: Topological preservation via Fuzzy Simplicial Sets.
+> - **Gradient Flow**: Solving vanishing gradients through Forget Gate Calculus.
+> - **Optimization**: Analysis of the Loss Landscape $(\mathcal{J}(\theta))$ and Hessian-based generalization.
+
+---
+
+## 📂 Repository Roadmap
+
+```text
+├── data/                  # Processed news & topic embeddings
+├── docs/                  # SOTA Reviews & Mathematical Foundations
+├── models/                # Production-ready weights (.h5, .safetensors)
+├── notebook-Phase-2/      # Forecasting, Topic Modeling, & XAI Suites
+└── app/                   # Visualization Dashboard
+```
 
 ---
 
 > [!TIP]
-> Use the **Model_Interpretability.ipynb** notebook to verify "Sharp" vs "Flat" minima gradients on your own local loss surface simulations.
-
-> [!IMPORTANT]
-> This project requires a GPU for efficient BERTopic embedding generation and BiLSTM training.
+> For a deep dive into the state-of-the-art, see our **[SOTA Literature Review](docs/dl-sota-literature-review.md)**.
