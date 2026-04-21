@@ -8,10 +8,10 @@
 
 ---
 
-## 📖 Overview
+## Overview
 The **Dynamic Trend & Event Detector** is a high-fidelity system designed to identify, track, and forecast evolving news narratives. By fusing probabilistic generative models with contextual transformers and sequence architectures, it provides deep insights into the "pulse" of global media.
 
-### 🛠 The Pipeline
+### The Pipeline
 ```mermaid
 graph LR
     A[Raw News Corpus] --> B[S-BERT Embeddings]
