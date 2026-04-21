@@ -1,4 +1,4 @@
-# 🚀 Dynamic Trend & Event Detector
+# Dynamic Trend & Event Detector
 
 **An Advanced Pipeline for Semantic Topic Discovery, Temporal Trend Forecasting, and Deep Learning Model Interpretability.**
 
@@ -24,7 +24,7 @@ graph LR
 
 ---
 
-## 🌟 Core Technical Pillars
+## Core Technical Pillars
 
 ### 1. Semantic Evolution Tracking
 Utilizes **BERTopic** (Sentence-BERT + UMAP + HDBSCAN) to capture nuanced shifts in news vocabulary and narrative clusters with state-of-the-art precision.
@@ -37,7 +37,7 @@ Transparency-first design using **SHAP**, **Temporal Attention Maps**, and **Gra
 
 ---
 
-## 🎓 Mathematical Rigor
+## Mathematical Rigor
 This project is built on first-principles engineering. Comprehensive mathematical derivations are documented in our **[Foundations Guide](docs/mathematical_foundations.md)**.
 
 > [!NOTE]
@@ -48,7 +48,7 @@ This project is built on first-principles engineering. Comprehensive mathematica
 
 ---
 
-## 📂 Repository Roadmap
+## Repository Roadmap
 
 ```text
 ├── data/                  # Processed news & topic embeddings
