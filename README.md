@@ -1,4 +1,4 @@
-# 🚀 Dynamic Trend & Event Detector
+# Dynamic Trend & Event Detector
 
 **An Advanced Pipeline for Semantic Topic Discovery, Temporal Trend Forecasting, and Deep Learning Model Interpretability.**
 
@@ -8,10 +8,10 @@
 
 ---
 
-## 📖 Overview
+## Overview
 The **Dynamic Trend & Event Detector** is a high-fidelity system designed to identify, track, and forecast evolving news narratives. By fusing probabilistic generative models with contextual transformers and sequence architectures, it provides deep insights into the "pulse" of global media.
 
-### 🛠 The Pipeline
+### The Pipeline
 ```mermaid
 graph LR
     A[Raw News Corpus] --> B[S-BERT Embeddings]
@@ -24,7 +24,7 @@ graph LR
 
 ---
 
-## 🌟 Core Technical Pillars
+## Core Technical Pillars
 
 ### 1. Semantic Evolution Tracking
 Utilizes **BERTopic** (Sentence-BERT + UMAP + HDBSCAN) to capture nuanced shifts in news vocabulary and narrative clusters with state-of-the-art precision.
@@ -37,7 +37,7 @@ Transparency-first design using **SHAP**, **Temporal Attention Maps**, and **Gra
 
 ---
 
-## 🎓 Mathematical Rigor
+## Mathematical Rigor
 This project is built on first-principles engineering. Comprehensive mathematical derivations are documented in our **[Foundations Guide](docs/mathematical_foundations.md)**.
 
 > [!NOTE]
@@ -48,15 +48,40 @@ This project is built on first-principles engineering. Comprehensive mathematica
 
 ---
 
-## 📂 Repository Roadmap
+## Repository Roadmap
 
 ```text
+├── backend/               # FastAPI Analytics Service
+├── frontend/              # Next.js Intelligence Dashboard
 ├── data/                  # Processed news & topic embeddings
 ├── docs/                  # SOTA Reviews & Mathematical Foundations
 ├── models/                # Production-ready weights (.h5, .safetensors)
 ├── notebook-Phase-2/      # Forecasting, Topic Modeling, & XAI Suites
-└── app/                   # Visualization Dashboard
+└── start.sh               # Unified Launch Script
 ```
+
+---
+
+## 🚀 Intelligence Platform
+
+The project now features a premium, full-stack intelligence platform for real-time visualization and forecasting.
+
+### Key Features
+- **Dashboard**: High-level KPIs and thematic evolution charts.
+- **Predictive Analytics**: Interactive LSTM forecasts for emerging themes.
+- **Event Explorer**: Deep dive into individual news reports with sentiment tracking.
+- **Glassmorphic UI**: State-of-the-art dark mode design for optimal data clarity.
+
+### Quick Start
+To launch the entire platform (Backend + Frontend):
+```bash
+chmod +x start.sh
+./start.sh
+```
+- **Dashboard**: `http://localhost:3000`
+- **Analytics API**: `http://localhost:8000`
+
+---
 
 ---
 
