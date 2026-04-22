@@ -20,7 +20,7 @@ export default function Dashboard() {
   const [stats, setStats] = useState<any>(null);
   const [topics, setTopics] = useState<any[]>([]);
   const [trends, setTrends] = useState<any[]>([]);
-  const [loading, setLoading] = useState(True);
+  const [loading, setLoading] = useState(true);
   const [selectedTopicId, setSelectedTopicId] = useState<number>(0);
 
   useEffect(() => {

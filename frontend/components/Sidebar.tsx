@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, TrendingUp, BarChart3, Newspaper, Settings, Github } from "lucide-react";
+import { LayoutDashboard, TrendingUp, BarChart3, Newspaper, Settings } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -62,7 +62,7 @@ export default function Sidebar() {
             href="https://github.com"
             className="flex items-center rounded-lg px-2 py-2 text-xs font-medium text-muted hover:text-foreground transition-colors"
           >
-            <Github className="mr-2 h-4 w-4" />
+            {/* <Github className="mr-2 h-4 w-4" /> */}
             Documentation
           </Link>
           <div className="rounded-xl bg-secondary/30 p-4 border border-border/20">
