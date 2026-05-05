@@ -5,7 +5,6 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Deep Learning](https://img.shields.io/badge/Framework-TensorFlow%20/%20PyTorch-orange.svg)](https://tensorflow.org)
 [![XAI](https://img.shields.io/badge/Insights-SHAP%20/%20Attention-green.svg)](https://github.com/slundberg/shap)
-[![Docker](https://img.shields.io/badge/Deploy-Docker%20Compose-2496ED.svg)](https://docs.docker.com/compose/)
 
 ---
 
@@ -75,8 +74,6 @@ This project is built on first-principles engineering. Comprehensive mathematica
 ## Repository Roadmap
 
 ```text
-├── backend/               # FastAPI Analytics Service + Dockerfile
-├── frontend/              # Next.js Intelligence Dashboard + Dockerfile
 ├── data/                  # Processed news & topic embeddings
 │   ├── raw/               # Original News_Category_Dataset_v3.json
 │   └── processed/         # processed_featured_data.csv
@@ -90,9 +87,7 @@ This project is built on first-principles engineering. Comprehensive mathematica
 │   ├── Hybrid_Forecasting.ipynb
 │   ├── Ablation_Studies.ipynb
 │   └── requirements.txt
-├── project-reports/       # Phase 1 & 2 PDF reports
-├── docker-compose.yml     # [NEW] One-command platform launch
-├── start.sh               # Shell-based launch script
+├── project-reports/       # Phase 1, 2, & 3 PDF/MD reports
 └── README.md
 ```
 
@@ -117,38 +112,10 @@ This project is built on first-principles engineering. Comprehensive mathematica
 - **Real-Time Data**: Global WebSocket architecture pumping live news events and updating the dashboard dynamically.
 - **Ablation Studies**: Diagnostic analysis across 5 topics with 4 metrics (RMSE, MAE, R2, MAPE)
 - **Architecture Docs**: Publication-ready Mermaid diagrams with tensor shapes
-- **Dockerization**: Turn-key reproducibility via `docker-compose`
 
 ---
 
-## Intelligence Platform
 
-The project features a premium, full-stack intelligence platform for real-time visualization and forecasting.
-
-### Key Features
-- **Live Intelligence Feed**: Real-time event ticker powered by persistent WebSocket connections.
-- **Dashboard**: High-level live KPIs and thematic evolution charts.
-- **Predictive Analytics**: 6-month extrapolated Future Trends combining ARIMA and BiLSTM.
-- **Event Explorer**: Deep dive into individual news reports with live article injection and sentiment tracking.
-- **Glassmorphic UI**: State-of-the-art dark mode design for optimal data clarity.
-
-### Quick Start
-
-**Option 1: Docker (Recommended)**
-```bash
-docker-compose up --build
-```
-
-**Option 2: Manual**
-```bash
-chmod +x start.sh
-./start.sh
-```
-
-- **Dashboard**: `http://localhost:3000`
-- **Analytics API**: `http://localhost:8000`
-
----
 
 ## Documentation
 
