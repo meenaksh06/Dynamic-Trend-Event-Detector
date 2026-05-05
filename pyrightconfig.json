@@ -1,0 +1,19 @@
+{
+  "pythonVersion": "3.9",
+  "pythonPlatform": "Darwin",
+  "pythonPath": "/usr/bin/python3",
+  "venvPath": "",
+  "extraPaths": [
+    "/Users/abhishekmeena/Library/Python/3.9/lib/python/site-packages",
+    "/Library/Python/3.9/site-packages",
+    "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+    "/opt/homebrew/lib/python3.9/site-packages"
+  ],
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none",
+  "reportOptionalMemberAccess": "none",
+  "reportOptionalSubscript": "none",
+  "reportOptionalCall": "none",
+  "reportGeneralTypeIssues": "none",
+  "typeCheckingMode": "off"
+}

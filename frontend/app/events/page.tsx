@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Newspaper, ExternalLink, Filter, Calendar } from "lucide-react";
 import TopicList from "@/components/TopicList";
 import { fetchTopics, fetchArticles } from "@/lib/api";
+import { useLiveContext } from "@/components/WebSocketProvider";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function EventExplorer() {
@@ -12,6 +13,7 @@ export default function EventExplorer() {
   const [loading, setLoading] = useState(true);
   const [loadingArticles, setLoadingArticles] = useState(false);
   const [selectedTopicId, setSelectedTopicId] = useState<number>(0);
+  const { lastEvent, connectionState } = useLiveContext();
 
   useEffect(() => {
     async function loadInitialData() {
@@ -43,18 +45,49 @@ export default function EventExplorer() {
     }
   }
 
+  // Prepend live events that match the current topic
+  useEffect(() => {
+    if (lastEvent && lastEvent.topic_id === selectedTopicId) {
+      setArticles(prev => {
+        // Prevent duplicates based on headline and timestamp just in case
+        if (prev.some(a => a.headline === lastEvent.headline && a.date === lastEvent.timestamp)) {
+          return prev;
+        }
+        return [{
+          date: lastEvent.timestamp,
+          headline: lastEvent.headline,
+          category: lastEvent.category,
+          sentiment_compound: lastEvent.sentiment_compound,
+          link: lastEvent.link,
+          // Custom flag to highlight it's a live event
+          isLive: true,
+          eventType: lastEvent.event_type
+        }, ...prev];
+      });
+    }
+  }, [lastEvent, selectedTopicId]);
+
   const selectedTopic = topics.find(t => t.id === selectedTopicId);
 
   return (
     <div className="space-y-8 pb-12">
-      <div className="flex items-center gap-4">
-        <div className="h-12 w-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
-          <Newspaper className="h-7 w-7" />
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="h-12 w-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
+            <Newspaper className="h-7 w-7" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">Event Explorer</h1>
+            <p className="text-muted text-sm">Deep dive into individual news events categorized by theme.</p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Event Explorer</h1>
-          <p className="text-muted text-sm">Deep dive into individual news events categorized by theme.</p>
-        </div>
+        
+        {connectionState === "connected" && (
+          <div className="glass px-4 py-1.5 rounded-full border border-emerald-500/30 flex items-center gap-2">
+            <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] text-emerald-400 font-bold tracking-widest uppercase">Live Injection Active</span>
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -102,11 +135,17 @@ export default function EventExplorer() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.2, delay: index * 0.05 }}
-                    className="glass group rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-300"
+                    className={`glass group rounded-2xl p-6 border ${article.isLive ? 'border-emerald-500/50 shadow-lg shadow-emerald-500/10' : 'border-border/50'} hover:border-primary/30 transition-all duration-300`}
                   >
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
+                          {article.isLive && (
+                            <span className="text-[10px] uppercase tracking-widest font-bold text-emerald-400 px-2 py-0.5 rounded-md bg-emerald-500/10 flex items-center gap-1">
+                              <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                              {article.eventType || "LIVE"}
+                            </span>
+                          )}
                           <span className="text-[10px] uppercase tracking-widest font-bold text-primary px-2 py-0.5 rounded-md bg-primary/10">
                             {article.category}
                           </span>

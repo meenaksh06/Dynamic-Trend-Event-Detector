@@ -1,29 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BrainCircuit, Info, AlertTriangle } from "lucide-react";
-import ForecastChart from "@/components/ForecastChart";
+import { BrainCircuit, Info, AlertTriangle, CheckCircle, BarChart3 } from "lucide-react";
+import HybridForecastChart from "@/components/HybridForecastChart";
 import TopicList from "@/components/TopicList";
-import { fetchTopics, fetchTrends, fetchForecast } from "@/lib/api";
+import { fetchTopics, fetchHybridForecast } from "@/lib/api";
+import { useLiveContext } from "@/components/WebSocketProvider";
 import { motion } from "framer-motion";
 
 export default function ForecastPage() {
   const [topics, setTopics] = useState<any[]>([]);
-  const [trends, setTrends] = useState<any[]>([]);
-  const [forecast, setForecast] = useState<any[]>([]);
+  const [hybridData, setHybridData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [loadingForecast, setLoadingForecast] = useState(false);
   const [selectedTopicId, setSelectedTopicId] = useState<number>(0);
+  const { topicCounts, connectionState } = useLiveContext();
 
   useEffect(() => {
     async function loadInitialData() {
       try {
-        const [topicsData, trendsData] = await Promise.all([
-          fetchTopics(),
-          fetchTrends()
-        ]);
+        const topicsData = await fetchTopics();
         setTopics(topicsData);
-        setTrends(trendsData);
         if (topicsData.length > 0) {
           loadForecast(topicsData[0].id);
         }
@@ -39,33 +36,38 @@ export default function ForecastPage() {
   async function loadForecast(topicId: number) {
     setLoadingForecast(true);
     try {
-      const forecastData = await fetchForecast(topicId);
-      setForecast(forecastData);
+      const data = await fetchHybridForecast(topicId);
+      setHybridData(data);
       setSelectedTopicId(topicId);
     } catch (error) {
-      console.error("Forecast load failed:", error);
+      console.error("Hybrid forecast load failed:", error);
     } finally {
       setLoadingForecast(false);
     }
   }
 
-  const historicalValues = trends.map(t => ({
-    date: t.date,
-    value: t[`topic_${selectedTopicId}`]
-  }));
-
   const selectedTopic = topics.find(t => t.id === selectedTopicId);
+  const metrics = hybridData && !hybridData.error ? hybridData : null;
+  const liveCount = (selectedTopicId !== null && topicCounts[selectedTopicId]) ? topicCounts[selectedTopicId] : 0;
 
   return (
     <div className="space-y-8 pb-12">
-      <div className="flex items-center gap-4">
-        <div className="h-12 w-12 rounded-2xl bg-accent/20 flex items-center justify-center text-accent">
-          <BrainCircuit className="h-7 w-7" />
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="h-12 w-12 rounded-2xl bg-violet-500/20 flex items-center justify-center text-violet-500">
+            <BarChart3 className="h-7 w-7" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">Predictive Analytics</h1>
+            <p className="text-muted text-sm">Phase 3 — Hybrid ARIMA + BiLSTM forecasting engine.</p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Predictive Analytics</h1>
-          <p className="text-muted text-sm">Long Short-Term Memory (LSTM) projections for emerging themes.</p>
-        </div>
+        {connectionState === "connected" && (
+          <div className="glass px-4 py-1.5 rounded-full border border-emerald-500/30 flex items-center gap-2">
+            <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] text-emerald-400 font-bold tracking-widest uppercase">Live Trajectory Active</span>
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -73,72 +75,118 @@ export default function ForecastPage() {
         <div className="space-y-6">
           <div className="glass rounded-3xl p-6 border border-border/50">
             <h3 className="text-lg font-bold mb-6">Select Pipeline</h3>
-            <TopicList 
-              topics={topics} 
-              isLoading={loading} 
+            <TopicList
+              topics={topics}
+              isLoading={loading}
               selectedId={selectedTopicId}
               onSelect={loadForecast}
             />
           </div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="rounded-2xl bg-amber-500/5 border border-amber-500/20 p-4 flex gap-3"
           >
             <AlertTriangle className="h-5 w-5 text-amber-500 shrink-0" />
             <p className="text-xs text-amber-200/70 leading-relaxed">
-              Predictions are based on historical monthly frequency. High volatility events can lead to significant variances in mid-term accuracy.
+              Hybrid predictions combine ARIMA linear trends with BiLSTM non-linear corrections.
+              High-volatility events may cause variance in mid-term accuracy.
             </p>
           </motion.div>
         </div>
 
         {/* Forecast Display */}
         <div className="lg:col-span-2 space-y-6">
-          <ForecastChart 
-            historicalData={historicalValues}
-            forecastData={forecast}
-            topicName={selectedTopic?.name || "Topic Analysis"}
+          <HybridForecastChart
+            data={hybridData}
             isLoading={loading || loadingForecast}
+            liveCount={liveCount}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="glass rounded-2xl p-6 border border-border/50">
-              <div className="flex items-center gap-3 mb-4">
-                <Info className="h-5 w-5 text-primary" />
-                <h4 className="font-bold text-foreground">Model Confidence</h4>
-              </div>
-              <div className="space-y-4">
-                <div>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span className="text-muted">Data Quality</span>
-                    <span className="text-foreground font-bold">88%</span>
+          {/* Model Metrics Cards */}
+          {metrics && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* ARIMA Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="glass rounded-2xl p-5 border border-amber-500/20"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="h-3 w-3 rounded-full bg-amber-500" />
+                  <h4 className="text-sm font-bold text-foreground">ARIMA (ML)</h4>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-muted">RMSE</span>
+                    <span className="font-mono font-bold">{metrics.arima.metrics.RMSE}</span>
                   </div>
-                  <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
-                    <div className="h-full bg-emerald-500 w-[88%]" />
+                  <div className="flex justify-between text-xs">
+                    <span className="text-muted">R²</span>
+                    <span className="font-mono font-bold">{metrics.arima.metrics.R2}</span>
                   </div>
                 </div>
-                <div>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span className="text-muted">Historical Fit</span>
-                    <span className="text-foreground font-bold">92%</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
-                    <div className="h-full bg-primary w-[92%]" />
-                  </div>
-                </div>
-              </div>
-            </div>
+              </motion.div>
 
-            <div className="glass rounded-2xl p-6 border border-border/50">
-              <h4 className="font-bold text-foreground mb-2">Technical Summary</h4>
-              <p className="text-xs text-muted leading-relaxed">
-                Network: Bi-directional LSTM<br/>
-                Layers: 64 Units (Dense) + 32 Units (Drop)<br/>
-                Optimizer: Adam (lr=0.001)<br/>
-                Regularization: L2 (0.001)
-              </p>
+              {/* BiLSTM Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="glass rounded-2xl p-5 border border-violet-500/20"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="h-3 w-3 rounded-full bg-violet-500" />
+                  <h4 className="text-sm font-bold text-foreground">BiLSTM (DL)</h4>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-muted">RMSE</span>
+                    <span className="font-mono font-bold">{metrics.bilstm.metrics.RMSE}</span>
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-muted">R²</span>
+                    <span className="font-mono font-bold">{metrics.bilstm.metrics.R2}</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Hybrid Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="glass rounded-2xl p-5 border border-cyan-500/30 bg-primary/5"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-4 w-4 text-cyan-400" />
+                  <h4 className="text-sm font-bold text-primary">Hybrid</h4>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-muted">RMSE</span>
+                    <span className="font-mono font-bold text-emerald-400">{metrics.hybrid.metrics.RMSE}</span>
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-muted">R²</span>
+                    <span className="font-mono font-bold text-emerald-400">{metrics.hybrid.metrics.R2}</span>
+                  </div>
+                </div>
+              </motion.div>
             </div>
+          )}
+
+          {/* Technical Summary */}
+          <div className="glass rounded-2xl p-6 border border-border/50">
+            <h4 className="font-bold text-foreground mb-2">Hybrid Architecture</h4>
+            <p className="text-xs text-muted leading-relaxed">
+              <strong className="text-foreground">Phase 3 Pipeline:</strong> ARIMA(2,1,2) extracts linear trend →
+              Residuals computed → BiLSTM(64+32 bidirectional) learns non-linear corrections →
+              Additive Fusion: <code className="text-primary">y_hybrid = y_ARIMA + ε_BiLSTM</code><br/>
+              <strong className="text-foreground">Optimizer:</strong> Adam (lr=0.001) &nbsp;|&nbsp;
+              <strong className="text-foreground">Regularization:</strong> Dropout(0.2) + EarlyStopping
+            </p>
           </div>
         </div>
       </div>

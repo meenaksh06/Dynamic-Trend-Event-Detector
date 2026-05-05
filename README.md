@@ -22,8 +22,9 @@ graph LR
     C --> D[ARIMA Linear Trend]
     D --> E[BiLSTM Residual Correction]
     E --> F[Hybrid Forecast]
-    F --> G[SHAP & Attention XAI]
-    G --> H[Intelligence Dashboard]
+    F --> G[True Future Prediction]
+    G --> H[Live WebSocket Stream]
+    H --> I[Intelligence Dashboard]
 ```
 
 ---
@@ -41,6 +42,10 @@ A **synergistic ARIMA + BiLSTM** hybrid model where:
 - **ARIMA(2,1,2)** captures linear trends and seasonal patterns (ML component)
 - **BiLSTM** learns non-linear residual dynamics that ARIMA misses (DL component)
 - **Additive Fusion**: `y_hybrid = y_ARIMA + residual_BiLSTM`
+- **True Future Prediction**: Projects models 6 months into the future to predict viral events *before* they happen.
+
+### 4. Real-Time Streaming Architecture
+A fully persistent global **WebSocket Context** streams incoming global news events to the frontend dashboard in real-time, instantly pushing live KPI updates, sentiment changes, and trending news directly to the visual layer.
 
 > [!IMPORTANT]
 > Full architecture diagram with tensor shapes available at **[Phase 3 Architecture](docs/phase3_architecture.md)**.
@@ -108,6 +113,8 @@ This project is built on first-principles engineering. Comprehensive mathematica
 
 ### Phase 3: Hybrid Innovation & Ablation
 - **Hybrid Model**: Synergistic ARIMA + BiLSTM (neuro-statistical decomposition)
+- **True Prediction**: 6-month future extrapolation for actionable intelligence.
+- **Real-Time Data**: Global WebSocket architecture pumping live news events and updating the dashboard dynamically.
 - **Ablation Studies**: Diagnostic analysis across 5 topics with 4 metrics (RMSE, MAE, R2, MAPE)
 - **Architecture Docs**: Publication-ready Mermaid diagrams with tensor shapes
 - **Dockerization**: Turn-key reproducibility via `docker-compose`
@@ -119,9 +126,10 @@ This project is built on first-principles engineering. Comprehensive mathematica
 The project features a premium, full-stack intelligence platform for real-time visualization and forecasting.
 
 ### Key Features
-- **Dashboard**: High-level KPIs and thematic evolution charts.
-- **Predictive Analytics**: Interactive LSTM forecasts for emerging themes.
-- **Event Explorer**: Deep dive into individual news reports with sentiment tracking.
+- **Live Intelligence Feed**: Real-time event ticker powered by persistent WebSocket connections.
+- **Dashboard**: High-level live KPIs and thematic evolution charts.
+- **Predictive Analytics**: 6-month extrapolated Future Trends combining ARIMA and BiLSTM.
+- **Event Explorer**: Deep dive into individual news reports with live article injection and sentiment tracking.
 - **Glassmorphic UI**: State-of-the-art dark mode design for optimal data clarity.
 
 ### Quick Start

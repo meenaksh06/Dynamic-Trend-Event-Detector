@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, TrendingUp, BarChart3, Newspaper, Settings } from "lucide-react";
+import { LayoutDashboard, TrendingUp, BarChart3, Newspaper, FlaskConical, Radio } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -12,9 +12,11 @@ function cn(...inputs: ClassValue[]) {
 
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/" },
+  { icon: Radio, label: "Live Feed", href: "/live" },
   { icon: TrendingUp, label: "Trend Analysis", href: "/trends" },
   { icon: BarChart3, label: "Forecasting", href: "/forecast" },
   { icon: Newspaper, label: "Event Explorer", href: "/events" },
+  { icon: FlaskConical, label: "Ablation", href: "/ablation" },
 ];
 
 export default function Sidebar() {
