@@ -114,6 +114,7 @@ This project is built on first-principles engineering. Comprehensive mathematica
 - **Ablation Studies**: Diagnostic analysis proving **11.0% (BiLSTM contribution)** and **17.7% (ARIMA contribution)** error reduction.
 - **Architecture Docs**: Publication-ready Mermaid diagrams with tensor shapes
 
+---
 
 ## Documentation
 
