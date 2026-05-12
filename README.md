@@ -112,7 +112,7 @@ This project is built on first-principles engineering. Comprehensive mathematica
 - **True Prediction**: 6-month future extrapolation for actionable intelligence.
 - **Real-Time Data**: Global WebSocket architecture pumping live news events and updating the dashboard dynamically.
 - **Ablation Studies**: Diagnostic analysis proving **11.0% (BiLSTM contribution)** and **17.7% (ARIMA contribution)** error reduction.
-- **Architecture Docs**: Publication-ready Mermaid diagrams with 
+- **Architecture Docs**: Publication-ready Mermaid diagrams with tensor shapes
 
 ---
 
