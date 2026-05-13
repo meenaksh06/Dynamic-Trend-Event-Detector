@@ -11,7 +11,7 @@
 ## Overview
 The **Dynamic Trend & Event Detector** is a high-fidelity system designed to identify, track, and forecast evolving news narratives. By fusing probabilistic generative models with contextual transformers and sequence architectures, it provides deep insights into the "pulse" of global media.
 
-The project spans **3 phases** — from raw data processing (Phase 1), through deep learning topic modeling and forecasting (Phase 2), to a **synergistic hybrid ARIMA + BiLSTM architecture** with diagnostic ablation studies (Phase 3).
+The project spans **3 phases** — from raw data processing (Phase 1), through deep learning topic modeling and forecasting (Phase 2), to a **synergistic hybrid ARIMA + BiLSTM architecture** with diagnostic ablation studies.
 
 ### The Full Pipeline
 ```mermaid
