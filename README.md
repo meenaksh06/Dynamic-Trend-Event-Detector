@@ -1,6 +1,6 @@
 # Dynamic Trend & Event Detector
 
-**An Advanced Neuro-Statistical Pipeline for Semantic Topic Discovery, Hybrid Temporal Forecasting, and Deep Learning Model Interpretability.**
+**An Advanced Neuro-Statistical Pipeline for Semantic Topic Discovery, Hybrid Temporal Forecasting, Interpretability.**
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Deep Learning](https://img.shields.io/badge/Framework-TensorFlow%20/%20PyTorch-orange.svg)](https://tensorflow.org)
